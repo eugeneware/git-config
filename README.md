@@ -14,6 +14,8 @@ $ npm install git-config
 
 ## Example Usage
 
+### Asynchronous
+
 ``` js
 var gitConfig = require('git-config');
 gitConfig(function (err, config) {
@@ -36,4 +38,11 @@ gitConfig('/my/path/.gitconfig1', function (err, config) {
   expect(config.github.user).to.equal('eugeneware');
   done();
 });
+```
+
+### Synchronous
+
+``` js
+var gitConfig = require('git-config');
+var config = gitConfig.sync(); // can pass explit file if you want as well
 ```
