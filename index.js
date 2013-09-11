@@ -16,5 +16,9 @@ module.exports.sync = function (gitConfigPath) {
     gitConfigPath = path.join(
       process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE, '.gitconfig');
   }
-  return parser.parseSync(gitConfigPath);
+  var results = {};
+  try {
+    results = parser.parseSync(gitConfigPath);
+  } catch (err) { }
+  return results;
 };
