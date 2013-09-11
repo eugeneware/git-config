@@ -32,4 +32,19 @@ describe('git-config', function() {
       done();
     });
   });
+
+  it('should be able to parse synchronously', function(done) {
+    process.env.HOME = fixturePath('');
+
+    var config = gitConfig.sync();
+    expect(config.user.name).to.equal('Eugene Ware');
+    expect(config.user.email).to.equal('eugene@noblesamurai.com');
+    expect(config.github.user).to.equal('eugeneware');
+
+    var config2 = gitConfig.sync(fixturePath('gitconfig1.ini'));
+    expect(config2.user.name).to.equal('Eugene Ware');
+    expect(config2.user.email).to.equal('eugene@noblesamurai.com');
+    expect(config2.github.user).to.equal('eugeneware');
+    done();
+  });
 });
