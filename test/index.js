@@ -65,4 +65,13 @@ describe('git-config', function() {
       done();
     });
   });
+
+  it('should be able to get the origin URL', function(done) {
+    gitConfig(fixturePath('gitconfig3.ini'), function (err, config) {
+      expect(config['remote "origin"'].url).to.equal(
+        'git@github.com:eugeneware/git-config.git');
+      if (err) return done(err);
+      done();
+    });
+  });
 });
