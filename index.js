@@ -11,8 +11,10 @@ module.exports = function (gitConfigPath, cb) {
 };
 
 module.exports.sync = function (gitConfigPath) {
-  gitConfigPath = path.join(
-    process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE, '.gitconfig');
+  if (typeof gitConfigPath === 'undefined') {
+    gitConfigPath = path.join(
+      process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE, '.gitconfig');
+  }
   var results = {};
   try {
     results = parser.parseSync(gitConfigPath);

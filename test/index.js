@@ -47,4 +47,22 @@ describe('git-config', function() {
     expect(config2.github.user).to.equal('eugeneware');
     done();
   });
+
+  it('should be able to pass in a config path synchronously', function(done) {
+    var config = gitConfig.sync(fixturePath('gitconfig2.ini'));
+    expect(config.user.name).to.equal('Fred Flintstone');
+    expect(config.user.email).to.equal('fred@flintstone.com');
+    expect(config.github.user).to.equal('fredflintstone');
+    done();
+  });
+
+  it('should be able to pass in a config path asynchronously', function(done) {
+    gitConfig(fixturePath('gitconfig2.ini'), function (err, config) {
+      if (err) return done(err);
+      expect(config.user.name).to.equal('Fred Flintstone');
+      expect(config.user.email).to.equal('fred@flintstone.com');
+      expect(config.github.user).to.equal('fredflintstone');
+      done();
+    });
+  });
 });
