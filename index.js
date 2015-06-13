@@ -5,7 +5,7 @@ module.exports = function (gitConfigPath, cb) {
   if (typeof cb === 'undefined') {
     cb = gitConfigPath;
     gitConfigPath = path.join(
-      process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE, '.gitconfig');
+      process.env.HOME || process.env.USERPROFILE, '.gitconfig');
   }
   parser.parse(gitConfigPath, cb);
 };
@@ -13,7 +13,7 @@ module.exports = function (gitConfigPath, cb) {
 module.exports.sync = function (gitConfigPath) {
   if (typeof gitConfigPath === 'undefined') {
     gitConfigPath = path.join(
-      process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE, '.gitconfig');
+      process.env.HOME || process.env.USERPROFILE, '.gitconfig');
   }
   var results = {};
   try {
