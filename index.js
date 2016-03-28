@@ -1,5 +1,6 @@
-var parser = require('iniparser'),
-    path = require('path');
+var ini = require('ini'),
+    path = require('path'),
+    fs = require('fs');
 
 module.exports = function (gitConfigPath, cb) {
   if (typeof cb === 'undefined') {
@@ -7,7 +8,12 @@ module.exports = function (gitConfigPath, cb) {
     gitConfigPath = path.join(
       process.env.HOME || process.env.USERPROFILE, '.gitconfig');
   }
-  parser.parse(gitConfigPath, cb);
+  fs.readFile(gitConfigPath, 'utf-8', function (err, iniContent) {
+    if (err) {
+      return cb(err)
+    }
+    cb(null, ini.parse(iniContent))
+  })
 };
 
 module.exports.sync = function (gitConfigPath) {
@@ -17,7 +23,7 @@ module.exports.sync = function (gitConfigPath) {
   }
   var results = {};
   try {
-    results = parser.parseSync(gitConfigPath);
+    results = ini.parse(fs.readFileSync(gitConfigPath, 'utf-8'));
   } catch (err) { }
   return results;
 };
