@@ -14,7 +14,7 @@
   "author": "Eugene Ware <eugene@noblesamurai.com>",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "iniparser": "~1.0.5"
+    "ini": "^1.3.4"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",

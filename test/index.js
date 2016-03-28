@@ -74,4 +74,14 @@ describe('git-config', function() {
       done();
     });
   });
+
+  it('should be able to parse a .gitconfig file with duplicate user sections', function(done) {
+    gitConfig(fixturePath('gitconfig4.ini'), function (err, config) {
+      if (err) return done(err);
+      expect(config.user.name).to.equal('Eugene Ware');
+      expect(config.user.email).to.equal('eugene@noblesamurai.com');
+      expect(config.github.user).to.equal('eugeneware');
+      done();
+    });
+  });
 });
