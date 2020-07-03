@@ -2,7 +2,7 @@
 
 A simple way to extract out all the contents of a .gitconfig file and return as JSON
 
-[![build status](https://secure.travis-ci.org/eugeneware/git-config.png)](http://travis-ci.org/eugeneware/git-config)
+[![build status](https://secure.travis-ci.org/eugeneware/git-config.svg)](http://travis-ci.org/eugeneware/git-config)
 
 ## Installation
 
